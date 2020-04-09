@@ -1,0 +1,15 @@
+
+sudo apt-get install:
+g++
+binutils 
+libc6-dev-i386   (note this is 32bit)
+xorriso
+
+model name	: Intel(R) Core(TM) i7-3610QM CPU @ 2.30GHz
+cpu cores	: 4
+gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ====> Using g++ to build.
+Linux Mint 19.3 Tricia
+Linux saw-G75VW 5.5.11 #1 SMP Tue Mar 24 22:12:06 CDT 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+Not really a need to write bootloader from scratch for this (yet).
+So, using Grub bootloader.
