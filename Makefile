@@ -31,8 +31,18 @@ objects = loader.o kernel.o
 mykernel.bin: linker.ld $(objects)
 	ld $(LDPARAMS) -T $< -o $@ $(objects)
 
-#install: mykernel.bin
-	#sudo cp $< /boot/mykernel.bin
+install: mykernel.bin
+	sudo cp $< /boot/mykernel.bin
+
+# The 'make install' requires adding the following entry
+# to /boot/grub/grub.cfg
+# menuentry 'My OS' {
+#  multiboot /boot/mykernel.bin
+#  boot
+# }
+#
+# To install in VM, use 'make mykernel.iso'
+
 
 mykernel.iso: mykernel.bin
 	mkdir -p iso/boot/grub
