@@ -2,9 +2,15 @@
 Hand-made minimal linux OS (32bit) and linker
 
 
-- The _startup code assumes that the program loader fills the needed registers before the startup code entry point is executed. We will have to do this manually with our own loader.o and link that into our kernel.o. Our specific issue here
-is with the stack pointer register requirement for C/C++ binaries (the kernel in this case). The compiler supplies the actual
-_startup code, crt0.o.
+- Need to write startup code and linker script:
+   - C/C++ programs can't run immediately after a processor restart: the
+     code requires that some setup is done first before main(), an entry
+     point called from _startup, is called.
+     The minimal setup includes creating a stack and loading it's address
+     in the stack pointer register, global data (initialized and uninitialized),
+     and read-only data.
+     Because our OS has no access to libc startup code, we need to handle
+     this setup ourselves, and then link it into our kernel object file.
 
    - See https://embeddedartistry.com/blog/2019/04/08/a-general-overview-of-what-happens-before-main/ for good write-up on C _startup.
    - We'll need to write a loader.s and a kernel.cpp.
